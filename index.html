@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bayberry — Landing page (Variant B)</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300..600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+a{color:#3A6960}a:hover{color:#2E554D}
+.mn{font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.mn *,.mn *:before,.mn *:after{box-sizing:border-box}
+.mn a{color:inherit;text-decoration:none}
+.mn h1,.mn h2,.mn h3,.mn p,.mn blockquote,.mn ul,.mn ol{margin:0}
+.mn ul,.mn ol{padding:0;list-style:none}
+.mn img{display:block;max-width:100%}
+.mn button,.mn input{font:inherit;color:inherit}
+.mn button{cursor:pointer}
+.mn :focus-visible{outline:2px solid #3A6960;outline-offset:3px}
+.mn-skip{position:absolute;left:-9999px;top:12px;z-index:200;padding:10px 16px;border-radius:8px;background:#1E2522;color:#FFFFFF;font-size:14px}
+.mn-skip:focus{left:16px}
+.mn-wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+.mn-label{font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#3A6960}
+.mn-balance{text-wrap:balance}
+.mn-pretty{text-wrap:pretty}
+.mn-nav{transition:background .2s ease,color .2s ease}
+.mn-nav:hover{background:#FFFFFF;color:#1E2522}
+.mn-mono{font-family:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;letter-spacing:.02em}
+.mn-chev{transition:transform .25s ease}
+[aria-expanded="true"] .mn-chev{transform:rotate(180deg)}
+.mn-btn-dark:hover{background:#2E554D !important}
+.mn-btn-dark .mn-arr{transition:transform .2s ease}
+.mn-btn-dark:hover .mn-arr{transform:translate(2px,-2px)}
+.mn-btn{transition:background .2s ease,border-color .2s ease,color .2s ease}
+.mn-btn-primary:hover{background:#2E554D !important}
+.mn-btn-ghost:hover{border-color:#3A6960 !important;color:#3A6960 !important}
+.mn-arrow .mn-arr{transition:transform .2s ease}
+.mn-arrow:hover .mn-arr{transform:translateX(3px)}
+.mn-card{transition:border-color .2s ease,box-shadow .2s ease}
+.mn-card:hover{border-color:#D3DAD7 !important;box-shadow:0 14px 34px -22px rgba(30,37,34,.2)}
+.mn-row{transition:background .2s ease}
+.mn-row:hover{background:#FBFCFB}
+.mn-logo{height:24px;width:auto;max-width:96px;object-fit:contain;filter:grayscale(1);opacity:.5;transition:opacity .2s ease}
+.mn-logo:hover{opacity:.85}
+.mn-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.mn-track{display:flex;align-items:center;gap:72px;width:max-content;padding-right:72px;animation:mn-scroll 50s linear infinite}
+@keyframes mn-scroll{to{transform:translateX(-50%)}}
+.mn-input:focus{border-color:#3A6960 !important;outline:none}
+.mn-foot:hover{color:#3A6960}
+.mn-menu-link:hover{background:#FBFCFB}
+.mn-mobile{display:none !important}
+.mn-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,88px);align-items:center}
+.mn-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.mn-stat+.mn-stat{border-left:1px solid #E7EAE8}
+.mn-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.mn-svc{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}
+.mn-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.mn-ind{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.mn-reviews{display:grid;grid-template-columns:1.3fr 1fr;gap:24px}
+.mn-contact{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
+.mn-foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px}
+@media (min-width:961px){.mn-mobile-panel{display:none !important}}
+@media (max-width:1060px){.mn-ind{grid-template-columns:repeat(2,minmax(0,1fr))}.mn-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.mn-step-line{display:none !important}}
+@media (max-width:960px){
+.mn-desktop{display:none !important}
+.mn-mobile{display:inline-flex !important}
+.mn-hero,.mn-svc,.mn-compare,.mn-reviews,.mn-contact{grid-template-columns:1fr}
+.mn-foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+.mn-stats,.mn-steps,.mn-ind{grid-template-columns:1fr}
+.mn-stat+.mn-stat{border-left:0;border-top:1px solid #E7EAE8}
+.mn-foot-grid{grid-template-columns:1fr}
+.mn-hide-sm{display:none !important}
+.mn-chip{position:static !important;margin-top:12px}
+}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.mn *{animation:none !important;transition:none !important}
+.mn-track{flex-wrap:wrap;width:auto;justify-content:center;row-gap:20px;padding-right:0}
+}
+</style>
+</helmet>
+
+<div class="mn" style="position: relative; background: #FFFFFF; color: #1E2522; font-size: 17px; line-height: 1.7; font-weight: 400">
+
+<a href="#main" class="mn-skip">Skip to content</a>
+
+<!-- ============ HEADER ============ -->
+<header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid #EEF0EF">
+<div class="mn-wrap" style="position: relative; height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+<a href="#home" aria-label="Bayberry Business Services home" style="display: flex; flex-shrink: 0"><img src="./assets/352de6838d4f0379894014fd688f6ecd.svg" alt="Bayberry Business Services" width="154" height="58" style="width: 154px; height: 58px; object-fit: contain"></a>
+<nav class="mn-desktop" aria-label="Main navigation" style="display: flex; align-items: center; gap: 4px; padding: 6px; border: 1px solid #EEF0EF; border-radius: 999px; background: #FBFCFB; font-size: 16px; white-space: nowrap">
+<a href="#home" aria-current="page" style="padding: 9px 18px; border-radius: 999px; background: #FFFFFF; color: #1E2522; font-weight: 500; box-shadow: 0 1px 3px rgba(30,37,34,0.1)">Home</a>
+<a class="mn-nav" href="https://bayberrybusiness.com/about-us/" style="padding: 9px 18px; border-radius: 999px; color: #3E504C">About Us</a>
+<div style="position: relative">
+<button type="button" class="mn-nav" aria-expanded="{{servicesExpanded}}" aria-controls="mn-services-menu" onClick="{{toggleServices}}" style="display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px 9px 18px; border: 0; border-radius: 999px; background: transparent; font-size: 16px; color: #3E504C">Services <svg class="mn-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg></button>
+<sc-if value="{{servicesOpen}}" hint-placeholder-val="{{ false }}">
+<div id="mn-services-menu" style="position: absolute; top: calc(100% + 16px); left: 50%; transform: translateX(-50%); z-index: 60; width: 320px; padding: 8px; background: #FFFFFF; border: 1px solid #E7EAE8; border-radius: 16px; box-shadow: 0 24px 50px -24px rgba(30,37,34,0.3)">
+<a class="mn-menu-link" href="https://bayberrybusiness.com/bookkeeping-accounting/" onClick="{{closeServices}}" style="display: block; padding: 12px 14px; border-radius: 10px; font-size: 15.5px">Bookkeeping &amp; Accounting</a>
+<a class="mn-menu-link" href="https://bayberrybusiness.com/fractional-cfo-services/" onClick="{{closeServices}}" style="display: block; padding: 12px 14px; border-radius: 10px; font-size: 15.5px">Fractional CFO Services</a>
+<a class="mn-menu-link" href="https://bayberrybusiness.com/tax-services/" onClick="{{closeServices}}" style="display: block; padding: 12px 14px; border-radius: 10px; font-size: 15.5px">Tax Services</a>
+<a class="mn-menu-link" href="https://bayberrybusiness.com/quality-of-earnings/" onClick="{{closeServices}}" style="display: block; padding: 12px 14px; border-radius: 10px; font-size: 15.5px">Quality of Earnings (QoE)</a>
+<a class="mn-menu-link" href="https://bayberrybusiness.com/business-owners-package/" onClick="{{closeServices}}" style="display: block; margin-top: 4px; padding: 12px 14px; border-radius: 10px; background: #FBFCFB; font-size: 15.5px; font-weight: 500; color: #3A6960">Business Owners Package</a>
+</div>
+</sc-if>
+</div>
+<a class="mn-nav" href="#industries" style="padding: 9px 18px; border-radius: 999px; color: #3E504C">Industries</a>
+<button type="button" class="mn-nav" onClick="{{openPortal}}" style="padding: 9px 18px; border: 0; border-radius: 999px; background: transparent; font-size: 16px; color: #3E504C">Client Login</button>
+</nav>
+<div style="display: flex; align-items: center; gap: 18px; flex-shrink: 0">
+<a class="mn-mono mn-desktop" href="tel:+16318986444" style="font-size: 14px; color: #3E504C">(631) 898-6444</a>
+<a class="mn-btn mn-btn-dark mn-hide-sm" href="https://bayberrybusiness.com/contact-us/" style="display: inline-flex; align-items: center; gap: 12px; height: 50px; padding: 0 22px; border-radius: 999px; background: #3A6960; color: #FFFFFF; font-size: 16px; font-weight: 500">Contact Us <svg class="mn-arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg></a>
+<button type="button" class="mn-mobile" aria-label="{{menuLabel}}" aria-expanded="{{menuExpanded}}" aria-controls="mn-mobile-nav" onClick="{{toggleMenu}}" style="align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid #E7EAE8; border-radius: 8px; background: #FFFFFF; color: #1E2522">
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg></sc-if>
+<sc-if value="{{menuClosed}}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg></sc-if>
+</button>
+</div>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<nav id="mn-mobile-nav" class="mn-mobile-panel" aria-label="Mobile navigation" style="position: absolute; top: calc(100% + 6px); left: 16px; right: 16px; z-index: 60; display: flex; flex-direction: column; padding: 8px; background: #FFFFFF; border: 1px solid #E7EAE8; border-radius: 12px; box-shadow: 0 20px 40px -24px rgba(30,37,34,0.25); font-size: 17px">
+<a class="mn-menu-link" href="#home" onClick="{{closeMenu}}" style="padding: 12px 14px; border-radius: 8px; font-weight: 500">Home</a>
+<a class="mn-menu-link" href="https://bayberrybusiness.com/about-us/" style="padding: 12px 14px; border-radius: 8px">About Us</a>
+<a class="mn-menu-link" href="#services" onClick="{{closeMenu}}" style="padding: 12px 14px; border-radius: 8px">Services</a>
+<a class="mn-menu-link" href="#industries" onClick="{{closeMenu}}" style="padding: 12px 14px; border-radius: 8px">Industries</a>
+<button type="button" class="mn-menu-link" onClick="{{openPortal}}" style="padding: 12px 14px; border: 0; border-radius: 8px; background: transparent; font-size: 17px; text-align: left">Client Login</button>
+<a href="https://bayberrybusiness.com/contact-us/" style="display: flex; align-items: center; justify-content: center; height: 48px; margin-top: 6px; border-radius: 8px; background: #3A6960; color: #FFFFFF; font-weight: 500">Contact Us</a>
+</nav>
+</sc-if>
+</div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section id="home" aria-labelledby="mn-hero-title" style="display: flex; align-items: center; min-height: min(calc(100vh - 92px), 860px); padding: 28px 0 40px">
+<div class="mn-wrap">
+<div class="mn-hero">
+<div>
+<p class="mn-label">Accounting · Tax · Fractional CFO · QoE</p>
+<h1 id="mn-hero-title" class="mn-balance" style="margin-top: 22px; font-size: clamp(42px, 5vw, 66px); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em">Financial clarity for <span style="color: #3A6960">business owners.</span></h1>
+<p class="mn-pretty" style="margin-top: 22px; max-width: 540px; font-size: clamp(17px, 1.35vw, 19px); font-weight: 300; line-height: 1.75; color: #5C6661">Partner with a responsive, detail-driven team for clean books, accounting, tax prep, quality of earnings and financial due diligence—so you can focus on growing your business or closing your next deal.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px">
+<a class="mn-btn mn-btn-primary mn-arrow" href="https://bayberrybusiness.com/contact-us/" style="display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 26px; border-radius: 8px; background: #3A6960; color: #FFFFFF; font-size: 16px; font-weight: 500">Let's Work Together <svg class="mn-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="mn-btn mn-btn-ghost" href="#how" style="display: inline-flex; align-items: center; height: 52px; padding: 0 26px; border: 1px solid #DDE2E0; border-radius: 8px; background: #FFFFFF; color: #1E2522; font-size: 16px; font-weight: 500">See how it works</a>
+</div>
+</div>
+
+<div style="position: relative; padding: 0 0 24px 24px">
+<div aria-hidden="true" style="position: absolute; inset: 28px -16px 0 0; border-radius: 20px; background: #FBFCFB"></div>
+<div role="img" aria-label="Sample monthly financial report with illustrative figures" style="position: relative; padding: 28px; border: 1px solid #E7EAE8; border-radius: 16px; background: #FFFFFF; box-shadow: 0 30px 60px -36px rgba(30,37,34,0.28)">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 18px; border-bottom: 1px solid #EEF0EF">
+<p style="font-size: 15px; font-weight: 500">Monthly report</p>
+<p style="padding: 4px 12px; border: 1px solid #E7EAE8; border-radius: 999px; font-size: 13px; color: #5C6661">Jan – Jun</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 20px">
+<div><p style="font-size: 13.5px; color: #5C6661">Revenue</p><p style="margin-top: 2px; font-size: 28px; font-weight: 400; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">$132,234</p></div>
+<div><p style="font-size: 13.5px; color: #5C6661">Cash balance</p><p style="margin-top: 2px; font-size: 28px; font-weight: 400; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">$5,500</p></div>
+</div>
+<svg viewBox="0 0 400 120" aria-hidden="true" style="display: block; width: 100%; height: auto; margin-top: 14px"><g stroke="#F0F2F1"><path d="M0 20H400M0 60H400M0 100H400"></path></g><path d="M10 92 80 74 150 80 220 50 290 58 390 22V108H10Z" fill="#3A6960" fill-opacity="0.06"></path><path d="M10 92 80 74 150 80 220 50 290 58 390 22" fill="none" stroke="#3A6960" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="390" cy="22" r="4" fill="#3A6960"></circle></svg>
+<ul style="margin-top: 12px; font-size: 14.5px">
+<li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 0; border-top: 1px solid #EEF0EF"><span>Books reconciled</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg></li>
+<li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 0; border-top: 1px solid #EEF0EF"><span>Payroll recorded</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg></li>
+<li style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 0; border-top: 1px solid #EEF0EF"><span>Tax plan on track</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg></li>
+</ul>
+<p style="margin-top: 10px; font-size: 12.5px; color: #6B746F">Sample report · illustrative figures</p>
+</div>
+<div class="mn-chip" style="position: absolute; left: -8px; bottom: 0; display: flex; align-items: center; gap: 12px; padding: 12px 18px 12px 12px; border: 1px solid #E7EAE8; border-radius: 12px; background: #FFFFFF; box-shadow: 0 16px 36px -22px rgba(30,37,34,0.3)">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: #F3F5F4; color: #3A6960"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"></circle><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 5v1"></path></svg></span>
+<span style="font-size: 14px; line-height: 1.35"><span style="display: block; font-weight: 500">Monthly check-in</span><span style="color: #5C6661">with your Bayberry team</span></span>
+</div>
+</div>
+</div>
+
+<div class="mn-stats" aria-label="Bayberry's experience" style="margin-top: clamp(36px, 4vw, 52px); border: 1px solid #E7EAE8; border-radius: 14px">
+<div class="mn-stat" style="display: flex; align-items: center; gap: 18px; padding: 26px 30px">
+<p style="font-size: clamp(32px, 3vw, 40px); font-weight: 400; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">250<span style="color: #3A6960">+</span></p>
+<p style="font-size: 15px; line-height: 1.4; color: #5C6661">Businesses served<br>nationwide</p>
+</div>
+<div class="mn-stat" style="display: flex; align-items: center; gap: 18px; padding: 26px 30px">
+<p style="font-size: clamp(32px, 3vw, 40px); font-weight: 400; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">500<span style="color: #3A6960">+</span></p>
+<p style="font-size: 15px; line-height: 1.4; color: #5C6661">Tax filings<br>completed</p>
+</div>
+<div class="mn-stat" style="display: flex; align-items: center; gap: 18px; padding: 26px 30px">
+<p style="font-size: clamp(32px, 3vw, 40px); font-weight: 400; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums">150<span style="color: #3A6960">+</span></p>
+<p style="font-size: 15px; line-height: 1.4; color: #5C6661">Quality of Earnings<br>completed</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ SYSTEMS ============ -->
+<section aria-label="Accounting and business systems we support" style="padding: 8px 0 clamp(64px, 7vw, 96px)">
+<div class="mn-wrap" style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px 40px">
+<p style="flex: 0 0 auto; font-size: 14px; line-height: 1.5; color: #5C6661">Works with the systems<br>you already use</p>
+<div class="mn-marquee" style="flex: 1 1 480px; min-width: 0">
+<div class="mn-track">
+<img class="mn-logo" src="./assets/22c312ee20e8ec7adcfdcbb65286841c.png" alt="Long Island Builders Institute member" style="height: 32px">
+<img class="mn-logo" src="./assets/3500700581e64679f1b794598bf8e600.svg" alt="QuickBooks">
+<img class="mn-logo" src="./assets/f2280aae558244acde95992cc4950f5b.svg" alt="Exact Online">
+<img class="mn-logo" src="./assets/19e88a251acfc86ab3e8b8cb4606a5f4.svg" alt="Gusto">
+<img class="mn-logo" src="./assets/9f4b601ca55f478d7583c08c3080295f.svg" alt="Keeper">
+<img class="mn-logo" src="./assets/a8576217d981f85ffe5348309c3e4b25.svg" alt="Toast">
+<img class="mn-logo" src="./assets/ceb04e3e9c134185d26d82d973cc2694.svg" alt="ADP">
+<img class="mn-logo" src="./assets/b2e801175b0423e226e9b6dcb8615783.svg" alt="IRS">
+<img class="mn-logo" src="./assets/7c58b1e684f15882ad41102922083628.svg" alt="Restaurant365">
+<img class="mn-logo" src="./assets/0bbc22eb74bc9a76d910ac155051f98e.svg" alt="Xero">
+<img class="mn-logo" src="./assets/22c312ee20e8ec7adcfdcbb65286841c.png" alt="" aria-hidden="true" style="height: 32px">
+<img class="mn-logo" src="./assets/3500700581e64679f1b794598bf8e600.svg" alt="" aria-hidden="true">
+<img class="mn-logo" src="./assets/f2280aae558244acde95992cc4950f5b.svg" alt="" aria-hidden="true">
+<img class="mn-logo" src="./assets/19e88a251acfc86ab3e8b8cb4606a5f4.svg" alt="" aria-hidden="true">
+<img class="mn-logo" src="./assets/9f4b601ca55f478d7583c08c3080295f.svg" alt="" aria-hidden="true">
+<img class="mn-logo" src="./assets/a8576217d981f85ffe5348309c3e4b25.svg" alt="" aria-hidden="true">
+<img class="mn-logo" src="./assets/ceb04e3e9c134185d26d82d973cc2694.svg" alt="" aria-hidden="true">
+<img class="mn-logo" src="./assets/b2e801175b0423e226e9b6dcb8615783.svg" alt="" aria-hidden="true">
+<img class="mn-logo" src="./assets/7c58b1e684f15882ad41102922083628.svg" alt="" aria-hidden="true">
+<img class="mn-logo" src="./assets/0bbc22eb74bc9a76d910ac155051f98e.svg" alt="" aria-hidden="true">
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ THE PROBLEM / THE FIX ============ -->
+<section id="difference" aria-labelledby="mn-diff-title" style="padding: clamp(72px, 8vw, 112px) 0; background: #FBFCFB">
+<div class="mn-wrap">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 48px">
+<div style="max-width: 640px">
+<p class="mn-label">The Bayberry difference</p>
+<h2 id="mn-diff-title" class="mn-balance" style="margin-top: 16px; font-size: clamp(32px, 3.6vw, 46px); font-weight: 400; line-height: 1.15; letter-spacing: -0.025em">Accounting done right, for a growing business.</h2>
+</div>
+<p class="mn-pretty" style="max-width: 400px; font-size: 16.5px; font-weight: 300; color: #5C6661">Most owners are stuck doing the books at night. We take that off your plate, completely.</p>
+</div>
+<div class="mn-compare" style="margin-top: clamp(36px, 4vw, 52px)">
+<div style="padding: 32px; border: 1px dashed #D3DAD7; border-radius: 14px">
+<p style="font-size: 15px; font-weight: 500; color: #5C6661">Without Bayberry</p>
+<ul style="margin-top: 14px">
+<li style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid #E7EAE8; font-size: 16.5px; color: #5C6661"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9AA49F" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex-shrink: 0"><path d="m7 7 10 10M17 7 7 17"></path></svg>Trying to do your own books</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid #E7EAE8; font-size: 16.5px; color: #5C6661"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9AA49F" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex-shrink: 0"><path d="m7 7 10 10M17 7 7 17"></path></svg>Chasing your accountant</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid #E7EAE8; font-size: 16.5px; color: #5C6661"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9AA49F" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex-shrink: 0"><path d="m7 7 10 10M17 7 7 17"></path></svg>Juggling multiple vendors</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid #E7EAE8; font-size: 16.5px; color: #5C6661"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9AA49F" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex-shrink: 0"><path d="m7 7 10 10M17 7 7 17"></path></svg>Reactive tax prep and bad surprises</li>
+</ul>
+</div>
+<div style="padding: 32px; border: 1px solid #E7EAE8; border-radius: 14px; background: #FFFFFF; box-shadow: 0 20px 44px -30px rgba(30,37,34,0.22)">
+<p style="display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; color: #3A6960"><img src="./assets/352de6838d4f0379894014fd688f6ecd.svg" alt="" aria-hidden="true" width="58" height="22" style="width: 58px; height: 22px; object-fit: contain; object-position: left">With Bayberry</p>
+<ul style="margin-top: 14px">
+<li style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid #E7EAE8; font-size: 16.5px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="m5 12 4.5 4.5L19 7"></path></svg>Clear, clean bookkeeping every month</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid #E7EAE8; font-size: 16.5px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="m5 12 4.5 4.5L19 7"></path></svg>One expert team talking to you monthly</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid #E7EAE8; font-size: 16.5px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="m5 12 4.5 4.5L19 7"></path></svg>All services in one package</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid #E7EAE8; font-size: 16.5px; font-weight: 500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="m5 12 4.5 4.5L19 7"></path></svg>Cash flow planning and tax planning</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" aria-labelledby="mn-services-title" style="padding: clamp(72px, 9vw, 128px) 0">
+<div class="mn-wrap">
+<div style="max-width: 680px">
+<p class="mn-label">Our services</p>
+<h2 id="mn-services-title" class="mn-balance" style="margin-top: 16px; font-size: clamp(32px, 3.6vw, 46px); font-weight: 400; line-height: 1.15; letter-spacing: -0.025em">One partner for every part of your finances.</h2>
+<p class="mn-pretty" style="margin-top: 16px; font-size: 17px; font-weight: 300; color: #5C6661">Quality accounting, bookkeeping, payroll and tax services for small business owners nationwide—on their own, or together in one package.</p>
+</div>
+
+<div class="mn-svc" style="margin-top: clamp(36px, 4vw, 52px)">
+<a class="mn-card mn-arrow" href="https://bayberrybusiness.com/business-owners-package/" style="display: flex; flex-direction: column; padding: clamp(28px, 3vw, 40px); border: 1px solid #E7EAE8; border-radius: 16px; background: #FBFCFB">
+<p style="align-self: flex-start; padding: 5px 12px; border: 1px solid #D3DAD7; border-radius: 999px; background: #FFFFFF; font-size: 12.5px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #3A6960">Most complete</p>
+<h3 style="margin-top: 24px; font-size: clamp(26px, 2.4vw, 32px); font-weight: 400; line-height: 1.2; letter-spacing: -0.02em">Business Owners Package</h3>
+<p class="mn-pretty" style="margin-top: 12px; max-width: 420px; font-size: 16.5px; font-weight: 300; color: #5C6661">Accounting, bookkeeping, payroll and tax services combined—so you can focus on what you do best, running your business.</p>
+<ul style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 26px; margin-bottom: 30px">
+<li style="display: flex; align-items: center; gap: 10px; padding: 14px 16px; border: 1px solid #E7EAE8; border-radius: 10px; background: #FFFFFF; font-size: 15.5px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg>Accounting</li>
+<li style="display: flex; align-items: center; gap: 10px; padding: 14px 16px; border: 1px solid #E7EAE8; border-radius: 10px; background: #FFFFFF; font-size: 15.5px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg>Bookkeeping</li>
+<li style="display: flex; align-items: center; gap: 10px; padding: 14px 16px; border: 1px solid #E7EAE8; border-radius: 10px; background: #FFFFFF; font-size: 15.5px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg>Payroll</li>
+<li style="display: flex; align-items: center; gap: 10px; padding: 14px 16px; border: 1px solid #E7EAE8; border-radius: 10px; background: #FFFFFF; font-size: 15.5px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"></path></svg>Tax</li>
+</ul>
+<span style="display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; margin-top: auto; height: 50px; padding: 0 24px; border-radius: 8px; background: #3A6960; color: #FFFFFF; font-size: 16px; font-weight: 500">Explore the package <svg class="mn-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+
+<div style="display: flex; flex-direction: column; border: 1px solid #E7EAE8; border-radius: 16px; overflow: hidden">
+<a class="mn-row mn-arrow" href="https://bayberrybusiness.com/bookkeeping-accounting/" style="flex: 1; display: flex; align-items: center; gap: 20px; padding: 26px 28px">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: #F3F5F4; color: #3A6960; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 3v18M12 8h4M12 12h4M12 16h3"></path></svg></span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 18.5px; font-weight: 500">Bookkeeping &amp; Accounting</span><span style="display: block; margin-top: 2px; font-size: 15px; font-weight: 300; color: #5C6661">Clean, accurate books every month—not just at tax time.</span></span>
+<svg class="mn-arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+<a class="mn-row mn-arrow" href="https://bayberrybusiness.com/fractional-cfo-services/" style="flex: 1; display: flex; align-items: center; gap: 20px; padding: 26px 28px; border-top: 1px solid #E7EAE8">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: #F3F5F4; color: #3A6960; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 16v-4M11 16V9M16 16v-6M4 8l6-4 5 2 5-4"></path></svg></span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 18.5px; font-weight: 500">Fractional CFO Services</span><span style="display: block; margin-top: 2px; font-size: 15px; font-weight: 300; color: #5C6661">Proactive strategy and cash flow planning for growth.</span></span>
+<svg class="mn-arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+<a class="mn-row mn-arrow" href="https://bayberrybusiness.com/tax-services/" style="flex: 1; display: flex; align-items: center; gap: 20px; padding: 26px 28px; border-top: 1px solid #E7EAE8">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: #F3F5F4; color: #3A6960; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 7h8M8 11h2M14 11h2M8 15h2M14 15h2M8 18h2M14 18h2"></path></svg></span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 18.5px; font-weight: 500">Tax Services</span><span style="display: block; margin-top: 2px; font-size: 15px; font-weight: 300; color: #5C6661">Beyond filing returns—proactive tax planning all year.</span></span>
+<svg class="mn-arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+<a class="mn-row mn-arrow" href="https://bayberrybusiness.com/quality-of-earnings/" style="flex: 1; display: flex; align-items: center; gap: 20px; padding: 26px 28px; border-top: 1px solid #E7EAE8">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: #F3F5F4; color: #3A6960; flex-shrink: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6"></circle><path d="m15 15 6 6"></path></svg></span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 18.5px; font-weight: 500">Quality of Earnings</span><span style="display: block; margin-top: 2px; font-size: 15px; font-weight: 300; color: #5C6661">Financial due diligence for your next deal.</span></span>
+<svg class="mn-arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" aria-labelledby="mn-how-title" style="padding: 0 0 clamp(72px, 9vw, 128px)">
+<div class="mn-wrap">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 48px; padding-top: clamp(56px, 6vw, 80px); border-top: 1px solid #E7EAE8">
+<div style="max-width: 640px">
+<p class="mn-label">How it works</p>
+<h2 id="mn-how-title" class="mn-balance" style="margin-top: 16px; font-size: clamp(32px, 3.6vw, 46px); font-weight: 400; line-height: 1.15; letter-spacing: -0.025em">From messy books to a clear financial picture.</h2>
+</div>
+<a class="mn-arrow" href="https://bayberrybusiness.com/contact-us/" style="display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; color: #3A6960">Start with a call <svg class="mn-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+<ol class="mn-steps" style="position: relative; margin-top: clamp(40px, 5vw, 56px)">
+<li aria-hidden="true" class="mn-step-line" style="position: absolute; left: 24px; right: 24px; top: 24px; height: 1px; background: #E7EAE8"></li>
+<li style="position: relative">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid #D3DAD7; border-radius: 50%; background: #FFFFFF; font-size: 15px; font-weight: 500; color: #3A6960">1</span>
+<h3 style="margin-top: 22px; font-size: 19px; font-weight: 500">Clean up your books</h3>
+<p class="mn-pretty" style="margin-top: 8px; font-size: 15.5px; font-weight: 300; color: #5C6661">We get your accounts accurate and organized in the systems you already use.</p>
+</li>
+<li style="position: relative">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid #D3DAD7; border-radius: 50%; background: #FFFFFF; font-size: 15px; font-weight: 500; color: #3A6960">2</span>
+<h3 style="margin-top: 22px; font-size: 19px; font-weight: 500">Monthly check-ins</h3>
+<p class="mn-pretty" style="margin-top: 8px; font-size: 15.5px; font-weight: 300; color: #5C6661">One expert team reviews your numbers with you every month.</p>
+</li>
+<li style="position: relative">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid #D3DAD7; border-radius: 50%; background: #FFFFFF; font-size: 15px; font-weight: 500; color: #3A6960">3</span>
+<h3 style="margin-top: 22px; font-size: 19px; font-weight: 500">Plan ahead</h3>
+<p class="mn-pretty" style="margin-top: 8px; font-size: 15.5px; font-weight: 300; color: #5C6661">Cash flow planning and tax planning, so there are no bad surprises.</p>
+</li>
+<li style="position: relative">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid #3A6960; border-radius: 50%; background: #3A6960; font-size: 15px; font-weight: 500; color: #FFFFFF">4</span>
+<h3 style="margin-top: 22px; font-size: 19px; font-weight: 500">Grow, or close your deal</h3>
+<p class="mn-pretty" style="margin-top: 8px; font-size: 15.5px; font-weight: 300; color: #5C6661">Focus on growing—with due diligence ready when your next deal comes.</p>
+</li>
+</ol>
+</div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section id="industries" aria-labelledby="mn-industries-title" style="padding: clamp(72px, 8vw, 112px) 0; background: #FBFCFB">
+<div class="mn-wrap">
+<div style="display: flex; flex-wrap: wrap; gap: 32px clamp(40px, 6vw, 88px)">
+<div style="flex: 1 1 320px; min-width: 0; max-width: 400px">
+<p class="mn-label">Nationwide expertise</p>
+<h2 id="mn-industries-title" class="mn-balance" style="margin-top: 16px; font-size: clamp(32px, 3.4vw, 44px); font-weight: 400; line-height: 1.15; letter-spacing: -0.025em">We serve a variety of industries nationwide.</h2>
+<p class="mn-pretty" style="margin-top: 16px; font-size: 16.5px; font-weight: 300; color: #5C6661">Financial clarity for the work you do and the business you are building.</p>
+<div style="overflow: hidden; margin-top: 28px; border-radius: 14px">
+<img src="./assets/53d2c3907bd6d5432484d252dbf9879b.jpg" alt="Financial professionals reviewing business documents and accounting reports together" width="561" height="362" style="width: 100%; height: auto; aspect-ratio: 1.5; object-fit: cover; filter: saturate(0.8)">
+</div>
+</div>
+<div style="flex: 999 1 520px; min-width: 0">
+<ul class="mn-ind" style="grid-template-columns: repeat(2, minmax(0, 1fr))">
+<li style="display: flex; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid #E7EAE8; border-radius: 12px; background: #FFFFFF; font-size: 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M3 21h18M6 21V5l6-3v19M12 8h6v13M8 8h1M8 12h1M8 16h1M15 11h1M15 15h1"></path></svg>Construction &amp; Contracting</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid #E7EAE8; border-radius: 12px; background: #FFFFFF; font-size: 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"></path></svg>Manufacturing &amp; Fabrication</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid #E7EAE8; border-radius: 12px; background: #FFFFFF; font-size: 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 21V3c-2 0-4 2-4 7v4h4"></path></svg>Restaurants &amp; Hospitality</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid #E7EAE8; border-radius: 12px; background: #FFFFFF; font-size: 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M2 6h12v10H2zM14 10h4l4 4v2h-8"></path><circle cx="6" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>Trucking &amp; Logistics</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid #E7EAE8; border-radius: 12px; background: #FFFFFF; font-size: 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="m3 11 9-7 9 7M5 9.5V20h14V9.5M10 20v-6h4v6"></path></svg>Real Estate &amp; Property Management</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid #E7EAE8; border-radius: 12px; background: #FFFFFF; font-size: 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 8h14l-1 12H6L5 8ZM9 8V6a3 3 0 0 1 6 0v2"></path></svg>E-commerce &amp; Retail</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid #E7EAE8; border-radius: 12px; background: #FFFFFF; font-size: 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><circle cx="9" cy="7" r="3"></circle><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 5v1"></path></svg>Professional Services &amp; Advisory Firms</li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 18px 20px; border: 1px solid #E7EAE8; border-radius: 12px; background: #FFFFFF; font-size: 16px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 20h16M4 16l5-5 4 3 7-8M15 6h5v5"></path></svg>M&amp;A / Investment-Backed Companies</li>
+</ul>
+<sc-if value="{{moreOpen}}" hint-placeholder-val="{{ false }}">
+<p id="mn-more-industries" style="margin-top: 16px; padding: 18px 20px; border: 1px solid #E7EAE8; border-radius: 12px; background: #FFFFFF; font-size: 15.5px; line-height: 1.8; color: #5C6661">Also: Marketing Agencies · Creatives · Course Creators · Home Service Contractors · Consulting · Designers · Professional Services · Flooring</p>
+</sc-if>
+<button type="button" aria-expanded="{{moreExpanded}}" aria-controls="mn-more-industries" onClick="{{toggleMore}}" style="margin-top: 16px; min-height: 44px; padding: 0 4px; border: 0; background: transparent; font-size: 15.5px; font-weight: 500; color: #3A6960">{{moreLabel}}</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="testimonials" aria-labelledby="mn-testimonials-title" style="padding: clamp(72px, 9vw, 128px) 0">
+<div class="mn-wrap">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 48px">
+<div>
+<p class="mn-label">Real relationships</p>
+<h2 id="mn-testimonials-title" class="mn-balance" style="margin-top: 16px; font-size: clamp(32px, 3.4vw, 44px); font-weight: 400; line-height: 1.15; letter-spacing: -0.025em">Here's what our clients have to say.</h2>
+</div>
+<p style="display: inline-flex; align-items: center; gap: 10px; font-size: 14.5px; color: #5C6661"><span aria-hidden="true" style="color: #3A6960; letter-spacing: 2px">★★★★★</span>Reviews shared by our clients</p>
+</div>
+<div class="mn-reviews" style="margin-top: clamp(36px, 4vw, 52px)">
+<article aria-labelledby="mn-review-kw" style="display: flex; flex-direction: column; padding: clamp(28px, 3vw, 40px); border: 1px solid #E7EAE8; border-radius: 16px; background: #FBFCFB">
+<svg aria-hidden="true" width="36" height="28" viewBox="0 0 64 48"><path d="M0 48V28C0 12 8 3 24 0l3 7c-9 3-13 8-13 15h12v26H0Zm36 0V28c0-16 8-25 24-28l3 7c-9 3-13 8-13 15h12v26H36Z" fill="#D3DAD7"></path></svg>
+<blockquote class="mn-pretty" style="margin-top: 18px; font-size: clamp(18px, 1.5vw, 21px); font-weight: 300; line-height: 1.65; color: #1E2522">“Brian and I met through Instagram, and shortly after had a zoom meeting to go over all that he has to offer. Although I do not need his monthly services just yet, he was able to help me file taxes and I have to say it was SUPER easy and straight forward. I also got my return within DAYS. Highly recommend Brian! Thanks again”</blockquote>
+<div style="display: flex; align-items: center; gap: 12px; margin-top: auto; padding-top: 26px">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: #FFFFFF; border: 1px solid #E7EAE8; font-size: 14px; font-weight: 500; color: #3A6960">KW</span>
+<div><p id="mn-review-kw" style="font-size: 15.5px; font-weight: 500">Kaitlyn Wagner</p><p style="font-size: 14px; color: #5C6661">August 18, 2023</p></div>
+</div>
+</article>
+<div style="display: grid; gap: 24px">
+<article aria-labelledby="mn-review-sl" style="display: flex; flex-direction: column; padding: 28px; border: 1px solid #E7EAE8; border-radius: 16px; background: #FFFFFF">
+<blockquote class="mn-pretty" style="font-size: 16.5px; font-weight: 300; line-height: 1.7">“Brian and his team have been extremely helpful they are the best around! Highly recommended. Thanks for everything!”</blockquote>
+<div style="display: flex; align-items: center; gap: 12px; margin-top: 20px">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #F3F5F4; font-size: 13.5px; font-weight: 500; color: #3A6960">SL</span>
+<div><p id="mn-review-sl" style="font-size: 15px; font-weight: 500">Sean Lyon</p><p style="font-size: 13.5px; color: #5C6661">August 4, 2025</p></div>
+</div>
+</article>
+<article aria-labelledby="mn-review-rs" style="display: flex; flex-direction: column; padding: 28px; border: 1px solid #E7EAE8; border-radius: 16px; background: #FFFFFF">
+<blockquote class="mn-pretty" style="font-size: 16.5px; font-weight: 300; line-height: 1.7">“Brian helped me so much with my companies financials. Thanks!”</blockquote>
+<div style="display: flex; align-items: center; gap: 12px; margin-top: 20px">
+<span aria-hidden="true" style="display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #F3F5F4; font-size: 13.5px; font-weight: 500; color: #3A6960">RS</span>
+<p id="mn-review-rs" style="font-size: 15px; font-weight: 500">Robert Stanley</p>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" aria-labelledby="mn-contact-title" style="padding: 0 0 clamp(72px, 8vw, 112px)">
+<div class="mn-wrap">
+<div class="mn-contact" style="padding: clamp(28px, 5vw, 64px); border: 1px solid #E7EAE8; border-radius: 20px; background: #FBFCFB">
+<div>
+<p class="mn-label">A clearer financial future</p>
+<h2 id="mn-contact-title" class="mn-balance" style="margin-top: 16px; font-size: clamp(32px, 3.8vw, 48px); font-weight: 400; line-height: 1.15; letter-spacing: -0.025em">Join Bayberry for a smarter financial future.</h2>
+<p class="mn-pretty" style="margin-top: 16px; max-width: 500px; font-size: 17px; font-weight: 300; color: #5C6661">We specialize in supporting small business owners with reliable accounting and financial clarity.</p>
+<a class="mn-btn mn-btn-primary mn-arrow" href="https://bayberrybusiness.com/contact-us/" style="display: inline-flex; align-items: center; gap: 10px; margin-top: 30px; height: 52px; padding: 0 26px; border-radius: 8px; background: #3A6960; color: #FFFFFF; font-size: 16px; font-weight: 500">Let's Work Together <svg class="mn-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+<div style="padding: 28px; border: 1px solid #E7EAE8; border-radius: 14px; background: #FFFFFF">
+<p style="font-size: 15px; font-weight: 500">Talk to the team</p>
+<ul style="margin-top: 10px">
+<li><a class="mn-row" href="tel:+16318986444" style="display: flex; align-items: center; gap: 14px; padding: 14px 8px; border-bottom: 1px solid #EEF0EF; font-size: 16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"></path></svg>(631) 898-6444</a></li>
+<li><a class="mn-row" href="mailto:info@bayberrybusiness.com" style="display: flex; align-items: center; gap: 14px; padding: 14px 8px; border-bottom: 1px solid #EEF0EF; font-size: 16px; overflow-wrap: anywhere"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>info@bayberrybusiness.com</a></li>
+<li style="display: flex; align-items: center; gap: 14px; padding: 14px 8px; font-size: 16px; color: #5C6661"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3A6960" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>PO Box 758, Westhampton, NY 11977</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer style="border-top: 1px solid #EEF0EF">
+<div class="mn-wrap mn-foot-grid" style="padding-top: 56px; padding-bottom: 40px">
+<div>
+<a href="#home" aria-label="Bayberry home" style="display: inline-flex"><img src="./assets/352de6838d4f0379894014fd688f6ecd.svg" alt="Bayberry Business Services" width="130" height="49" style="width: 130px; height: 49px; object-fit: contain"></a>
+<p class="mn-pretty" style="margin-top: 14px; max-width: 260px; font-size: 15px; font-weight: 300; line-height: 1.7; color: #5C6661">End-to-End Financial Management for Business Owners.</p>
+<div style="display: flex; gap: 6px; margin-top: 18px">
+<a class="mn-foot" href="https://www.facebook.com/profile.php?id=100086323159414" aria-label="Bayberry on Facebook" target="_blank" rel="noopener noreferrer" style="display: grid; place-items: center; width: 44px; height: 44px; color: #5C6661"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h-2a4 4 0 0 0-4 4v3H6v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h2V3Z"></path></svg></a>
+<a class="mn-foot" href="https://www.linkedin.com/company/hamptons-cfo/?viewAsMember=true" aria-label="Bayberry on LinkedIn" target="_blank" rel="noopener noreferrer" style="display: grid; place-items: center; width: 44px; height: 44px; color: #5C6661"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v11M4 4v.1M9 20V9h4v2c4-4 7-1 7 3v6M13 11v9"></path></svg></a>
+<a class="mn-foot" href="https://www.instagram.com/hamptonscfo/?next=%2F" aria-label="Bayberry on Instagram" target="_blank" rel="noopener noreferrer" style="display: grid; place-items: center; width: 44px; height: 44px; color: #5C6661"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17 7h.01"></path></svg></a>
+</div>
+</div>
+<div>
+<h3 style="font-size: 14px; font-weight: 500">Quick Links</h3>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 16px; font-size: 15px; color: #5C6661">
+<a class="mn-foot" href="#home">Home</a>
+<a class="mn-foot" href="https://bayberrybusiness.com/about-us/">About Us</a>
+<a class="mn-foot" href="#services">Our Services</a>
+<button type="button" class="mn-foot" onClick="{{openPortal}}" style="padding: 0; border: 0; background: transparent; font-size: 15px; color: #5C6661">Client Login</button>
+</div>
+</div>
+<div>
+<h3 style="font-size: 14px; font-weight: 500">Resources</h3>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 16px; font-size: 15px; color: #5C6661">
+<a class="mn-foot" href="https://bayberrybusiness.com/terms-conditions/">Terms &amp; Conditions</a>
+<a class="mn-foot" href="https://bayberrybusiness.com/privacy-policy/">Privacy Policy</a>
+<a class="mn-foot" href="https://bayberrybusiness.com/user-guidelines/">User Guidelines</a>
+</div>
+</div>
+<div>
+<h3 style="font-size: 14px; font-weight: 500">Get updates</h3>
+<form action="mailto:info@bayberrybusiness.com" method="get" style="margin-top: 16px">
+<label for="mn-email" style="display: block; font-size: 14px; color: #5C6661">Email address</label>
+<div style="display: flex; gap: 6px; margin-top: 8px">
+<input id="mn-email" class="mn-input" name="email" type="email" placeholder="you@company.com" autocomplete="email" required="" maxlength="254" style="flex: 1 1 auto; min-width: 0; height: 44px; padding: 0 12px; border: 1px solid #DDE2E0; border-radius: 8px; background: #FFFFFF; font-size: 15px">
+<button type="submit" aria-label="Request Bayberry email updates" class="mn-btn mn-btn-primary" style="display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 8px; background: #3A6960; color: #FFFFFF; flex-shrink: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+</div>
+</form>
+</div>
+</div>
+<div class="mn-wrap">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 20px 0 28px; border-top: 1px solid #EEF0EF; font-size: 13.5px; color: #5C6661">
+<p>Copyright © 2025 Bayberry Business Services. All rights reserved.</p>
+<p>Made by <a href="https://www.viralchilly.com/" target="_blank" rel="noopener noreferrer" style="color: #3A6960">Viralchilly</a></p>
+</div>
+</div>
+</footer>
+
+<!-- ============ CLIENT PORTAL DIALOG ============ -->
+<sc-if value="{{portalOpen}}" hint-placeholder-val="{{ false }}">
+<div style="position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; background: rgba(30,37,34,0.25); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px)">
+<div role="dialog" aria-modal="true" aria-labelledby="mn-portal-title" style="position: relative; width: 100%; max-width: 440px; padding: 34px; border: 1px solid #E7EAE8; border-radius: 14px; background: #FFFFFF; box-shadow: 0 24px 60px -28px rgba(30,37,34,0.35)">
+<button type="button" aria-label="Close client portal information" onClick="{{closePortal}}" style="position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 8px; background: transparent; color: #5C6661"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg></button>
+<p class="mn-label" style="font-size: 12px">Client access</p>
+<h2 id="mn-portal-title" style="margin-top: 12px; font-size: 26px; font-weight: 400; line-height: 1.25">Your Bayberry client portal.</h2>
+<p style="margin-top: 12px; font-size: 16px; font-weight: 300; line-height: 1.7; color: #5C6661">Please contact your Bayberry team for your secure sign-in link. We will help you access your account.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 24px">
+<a class="mn-btn mn-btn-primary" href="mailto:info@bayberrybusiness.com?subject=Client%20portal%20access" style="display: inline-flex; align-items: center; height: 46px; padding: 0 20px; border-radius: 8px; background: #3A6960; color: #FFFFFF; font-size: 15.5px; font-weight: 500">Email the team</a>
+<a href="tel:+16318986444" style="font-size: 15.5px; font-weight: 500; color: #3A6960">Call Bayberry</a>
+</div>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    return {
+      menuOpen: !!s.menuOpen,
+      menuClosed: !s.menuOpen,
+      servicesOpen: !!s.servicesOpen,
+      servicesExpanded: s.servicesOpen ? 'true' : 'false',
+      toggleServices: () => this.setState({ servicesOpen: !s.servicesOpen }),
+      closeServices: () => this.setState({ servicesOpen: false }),
+      moreOpen: !!s.moreOpen,
+      portalOpen: !!s.portalOpen,
+      menuExpanded: s.menuOpen ? 'true' : 'false',
+      moreExpanded: s.moreOpen ? 'true' : 'false',
+      menuLabel: s.menuOpen ? 'Close navigation' : 'Open navigation',
+      moreLabel: s.moreOpen ? 'Show fewer industries' : '+ More industries we serve',
+      toggleMenu: () => this.setState({ menuOpen: !s.menuOpen }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      toggleMore: () => this.setState({ moreOpen: !s.moreOpen }),
+      openPortal: () => this.setState({ portalOpen: true, menuOpen: false }),
+      closePortal: () => this.setState({ portalOpen: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
